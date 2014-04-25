@@ -14,9 +14,7 @@ GITHUB_PASSWORD = ENV['GITHUB_PASSWORD']
 # Github Organisation name to backup
 GITHUB_ORGANISATION_NAME = ENV['GITHUB_ORGANISATION_NAME']
 
-# REPOS to skip
-REPOS_TO_SKIP = %w{ ENV['REPOS_TO_SKIP'] }
-
+# Github options
 USE_SSL = true
 
 require 'rubygems'
@@ -64,6 +62,7 @@ end
       puts "Backup doesn't exist".red
       return true
     elsif skip?(name)
+      puts "Skipping #{name}"
       return false
     elsif backup_exists?(name) && (backup_object_date(name) < date)
       puts "Backup exists but is older than last push date".red
@@ -76,7 +75,7 @@ end
   end
 
   def skip?(name)
-    REPOS_TO_SKIP.include?(name)
+    ENV['REPOS_TO_SKIP'].include?(name)
   end
  
  def compressed_filename(str)

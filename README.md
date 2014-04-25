@@ -10,6 +10,7 @@ perform a backup of the repo.
 
 * Copy env_sample to .env
 * Update .env as required to suit
+* `REPOS_TO_SKIP` should be a comma seperated list of values
 
 # Usage:
 
